@@ -38,7 +38,7 @@ This completes the preparatory step - declaring a discount. Now implement the re
 
 - Relative discount value 0 indicates that there is no discount, while a positive value indicates the relative amount of the discount.
    - When there is no discount, only the book's price must appear in the list of `PriceLine`s, with label "Price".
-   - When there *is* the account, then there must be a line with label "Original price", followed by the line indicating amount of the discount, followed by the line with label "TOTAL", indicating the final price with discount deducted from the original price.
+   - When there *is* the discount, then there must be a line with label "Original price", followed by the line indicating amount of the discount, followed by the line with label "TOTAL", indicating the final price with discount deducted from the original price.
 
 With this feature completed, introduce a new possible discount that may interact with the first one, and the rules that may affect all discounts applied to a price:
 
