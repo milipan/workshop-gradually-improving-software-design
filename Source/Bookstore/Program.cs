@@ -1,5 +1,6 @@
 using Bookstore.Data.Seeding;
 using Bookstore.Data.Seeding.DataSeed;
+using Bookstore.Domain.Discounts;
 using Bookstore.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,9 @@ string bookstoreConnectionString =
     builder.Configuration.GetConnectionString("BookstoreConnection") ?? string.Empty;
 builder.Services.AddDbContext<BookstoreDbContext>(options =>
     options.UseSqlServer(bookstoreConnectionString));
+
+builder.Services.AddSingleton(new DiscountParameters(.05M, "C", .1M));
+builder.Services.AddScoped<IDiscount, Discount>();
 
 if (builder.Environment.IsDevelopment())
 {
