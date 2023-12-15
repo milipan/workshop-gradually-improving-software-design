@@ -1,4 +1,5 @@
 using Bookstore.Domain.Models;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookstore.Domain.Specifications;
@@ -15,4 +16,8 @@ public static class BookSpecifications
 
     public static IQueryable<Book> ByTitle(this IQueryable<Book> books, string title) =>
         books.Where(book => book.Title == title);
+
+    public static IQueryable<Book> ByOptionalAuthorInitial(this IQueryable<Book> books, string? initial) =>
+        initial is null ? books :
+        books.Where(book => book.AuthorsCollection.Any(auth => auth.Person.LastName.StartsWith(initial)));
 }
